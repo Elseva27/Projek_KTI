@@ -15,9 +15,11 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        ViewBag.username = "Jelita";
-        string[] fruits = new string[] { "Apple", "Banana", "Orange"};
-        ViewBag.fruits = fruits; 
+        //ViewData["username"] = "elsavajelita";
+        ViewBag.username = "elsavajelita";
+        string[] fruits = new string[] { "Apple", "Banana", "Orange" };
+        ViewBag.fruits = fruits;
+
         return View();
     }
 
@@ -37,5 +39,10 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    private class ErrorViewModel
+    {
+        public string? RequestId { get; set; }
     }
 }

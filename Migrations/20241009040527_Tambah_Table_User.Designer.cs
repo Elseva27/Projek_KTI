@@ -10,8 +10,8 @@ using SampleSecureWeb.Data;
 namespace SampleSecureWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241005052658_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241008031031_Tambah_Table_User")]
+    partial class Tambah_Table_User
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,8 +32,25 @@ namespace SampleSecureWeb.Migrations
 
                     b.ToTable("Students");
                 });
+
+            modelBuilder.Entity("SampleSecureWeb.Models.User", b =>
+                {
+                    b.Property<string>("Username")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Username");
+
+                    b.ToTable("Users");
+                });
 #pragma warning restore 612, 618
         }
     }
 }
-

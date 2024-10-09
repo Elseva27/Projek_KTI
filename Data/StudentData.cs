@@ -1,33 +1,36 @@
 using System;
-using System.Linq.Expressions;
-using System.Reflection.Metadata.Ecma335;
+using System.Data.Common;
 using SampleSecureWeb.Models;
-using SQLitePCL;
+
 
 namespace SampleSecureWeb.Data;
+
 public class StudentData : IStudent
 {
     private readonly ApplicationDbContext _db;
+
     public StudentData(ApplicationDbContext db)
     {
         _db = db;
     }
     public Student AddStudent(Student student)
     {
-        try
-        {
+       try
+       {
             _db.Students.Add(student);
             _db.SaveChanges();
             return student;
-        }
-        catch (System.Exception ex)
-        {
+       }
+       catch(System.Exception ex)
+       {
+
             throw new Exception(ex.Message);
-        }
+       }
     }
+
     public void DeleteStudent(string nim)
     {
-        throw new NotSupportedException();
+        throw new NotImplementedException();
     }
 
     public Student GetStudent(string nim)
@@ -37,7 +40,7 @@ public class StudentData : IStudent
 
     public IEnumerable<Student> GetStudents()
     {
-        var students = _db.Students.OrderBy(s=>s.FullName);
+        var students = _db.Students.OrderBy(s => s.FullName);
         return students;
     }
 
